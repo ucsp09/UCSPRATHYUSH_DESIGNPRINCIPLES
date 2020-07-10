@@ -1,41 +1,26 @@
 package test;
-import src.*;
-import java.util.*;
+import src.UserInterface;
+import java.util.Scanner;
 public class Client {
     public static void main(String[] args){
-        boolean input=true;
         Scanner sc=new Scanner(System.in);
+        boolean input=true;
+        UserInterface obj=new UserInterface();
         int choice;
-        double a,b;
         while(input)
         {
-            System.out.println("1.Add");
-            System.out.println("2.Subtract");
-            System.out.println("3.Multiply");
-            System.out.println("4.Divide");
-            System.out.println("5.Exit");
-            System.out.println("Choose your choice:");
+            obj.displayUI();
             choice=sc.nextInt();
-            if(choice==1||choice==2||choice==3||choice==4)
+            if(obj.validateChoice(choice))
             {
-                MathOperations obj=new MathOperations();
+                double a,b;
                 System.out.println("Enter Two Space Seperated Numbers");
                 a=sc.nextDouble();
                 b=sc.nextDouble();
-                if(choice==1)
-                    System.out.println(obj.add(a,b));
-                else if(choice==2)
-                    System.out.println(obj.subtract(a,b));
-                else if(choice==3)
-                    System.out.println(obj.multiply(a,b));
-                else
-                    System.out.println(obj.divide(a,b));
+                obj.executeChoice(choice,a,b);
             }
-            else if(choice==5)
-                input=false;
             else
-                System.out.println("Please Enter a valid choice");
-            System.out.println("***********************************");
+                System.out.println("!!!Please Enter a correct choice!!!");
         }
     }
 }
